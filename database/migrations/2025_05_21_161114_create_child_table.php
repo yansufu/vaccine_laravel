@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('childID');
             $table->unsignedBigInteger('parent_id');
             $table->string('name');
-            $table->date('dateofBirth');
+            $table->date('dateOfBirth');
             $table->float('weight',5 ,2);
             $table->float('height',5 ,2);
             $table->string('medicalHistory')->nullable();
