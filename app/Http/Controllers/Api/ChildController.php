@@ -37,7 +37,7 @@ class ChildController extends Controller
             ['message' => 'invalid data format'], 422);
         };
 
-        $child = children::create([
+        $child = Children::create([
             'parent_id' => $parent_id,
             'name' => $request->name,
             'dateOfBirth' => $request->dateOfBirth,
