@@ -16,10 +16,10 @@ class Children extends Model
     protected $fillable = [
         'parent_id',
         'name',
-        'dateOfBirth',
+        'date_of_birth',
         'weight',
         'height',
-        'medicalHistory',
+        'medical_history',
         'allergy',
     ];
 }

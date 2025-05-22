@@ -19,10 +19,10 @@ class ChildResource extends JsonResource
             'id' => $this->childID,
             'parent_id' => $this->parent_id,
             'name' => $this->name,
-            'dateOfBirth' => $this->dateOfBirth,
+            'date_of_birth' => $this->date_of_birth,
             'weight' => $this->weight,
             'height' => $this->height,
-            'medicalHistory' => $this->medicalHistory,
+            'medical_history' => $this->medical_history,
             'allergy' => $this->allergy,
         ];
     }

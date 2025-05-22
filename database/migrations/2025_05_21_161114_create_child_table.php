@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('childID');
             $table->unsignedBigInteger('parent_id');
             $table->string('name');
-            $table->date('dateOfBirth');
+            $table->date('date_of_birth');
             $table->float('weight',5 ,2);
             $table->float('height',5 ,2);
-            $table->string('medicalHistory')->nullable();
+            $table->string('medical_history')->nullable();
             $table->string('allergy')->nullable();
             $table->timestamps();
 

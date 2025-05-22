@@ -25,10 +25,10 @@ class ChildController extends Controller
     public function store(Request $request, $parent_id){
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
-            'dateOfBirth' => 'required|date',
+            'date_of_birth' => 'required|date',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
-            'medicalHistory' => 'required|string|max:500',
+            'medical_history' => 'required|string|max:500',
             'allergy' => 'required|string|max:500',
         ]);
 
@@ -40,10 +40,10 @@ class ChildController extends Controller
         $child = Children::create([
             'parent_id' => $parent_id,
             'name' => $request->name,
-            'dateOfBirth' => $request->dateOfBirth,
+            'date_of_birth' => $request->date_of_birth,
             'weight' => $request->weight,
             'height' => $request->height,
-            'medicalHistory' => $request->medicalHistory,
+            'medical_history' => $request->medical_history,
             'allergy' => $request->allergy,
         ]);
 
@@ -60,10 +60,10 @@ class ChildController extends Controller
     public function update(Request $request, Children $child){
         $validator = Validator::make($request->all(),[
             'name' => 'string|max:255',
-            'dateOfBirth' => 'date',
+            'date_of_birth' => 'date',
             'weight' => 'numeric',
             'height' => 'numeric',
-            'medicalHistory' => 'string|max:500',
+            'medical_history' => 'string|max:500',
             'allergy' => 'string|max:500',
         ]);
 
@@ -74,10 +74,10 @@ class ChildController extends Controller
 
         $child->update($request->only([
             'name',
-            'dateOfBirth',
+            'date_of_birth',
             'weight',
             'height',
-            'medicalHistory',
+            'medical_history',
             'allergy'
         ]));    
 
