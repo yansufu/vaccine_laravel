@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Vaccinations;
+
 
 class Children extends Model
 {
@@ -23,4 +25,10 @@ class Children extends Model
         'allergy',
         'org_id',
     ];
+
+    public function vaccinations()
+    {
+        return $this->hasMany(Vaccinations::class, 'child_id');
+    }
+
 }

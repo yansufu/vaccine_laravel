@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Children;
+use App\Models\Vaccinations;
+use App\Models\Vaccines;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ChildResource;
@@ -48,6 +50,22 @@ class ChildController extends Controller
             'allergy' => $request->allergy,
             'org_id' => $request->org_id,
         ]);
+
+        // Populate vaccination table for each children creation
+        $vaccines = Vaccines::all();
+
+        foreach ($vaccines as $vaccine) {
+            Vaccinations::create([
+                'child_id' => $child->childID,
+                'vaccine_id' => $vaccine->id,
+                //added after scan
+                'status' => null,
+                'lot_id' => null,
+                'prov_id' => null,
+            ]);
+        }
+
+        return response()->json($child->load('vaccinations'), 201);
 
         return response()->json(
             ['message' => 'data created successfully',
