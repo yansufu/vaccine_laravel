@@ -1,21 +1,21 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
-use App\Models\Parents;
+use App\Models\Providers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\ParentResource;
+use App\Http\Resources\ProviderResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class ParentController extends Controller
+class ProviderController extends Controller
 {
-    
     public function index(){
-        $parent = Parents::get();
-        if($parent->count() > 0)
+        $provider = Providers::get();
+        if($provider->count() > 0)
         {
-            return ParentResource::collection($parent);
+            return ProviderResource::collection($provider);
         }
         else
         {
@@ -26,8 +26,8 @@ class ParentController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
-            'NIK' => 'required|string|max:255|unique:parent,NIK',
-            'email' => 'required|email|unique:parent,email',
+            'org_id' => 'required|integer|max:255',
+            'email' => 'required|email|unique:provider,email',
             'password' => 'required|string|max:255',
         ]);
 
@@ -36,26 +36,27 @@ class ParentController extends Controller
             ['message' => 'invalid data format'], 422);
         };
 
-        $parent = Parents::create([
+        $provider = Providers::create([
             'name' => $request->name,
-            'NIK' => $request->NIK,
+            'org_id' => $request->org_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         return response()->json(
             ['message' => 'data created successfully',
-            'Data' => new ParentResource($parent)], 200
+            'Data' => new ProviderResource($provider)], 200
         );
     }
 
-    public function show(Parents $parent){
-        return new ParentResource($parent);
+    public function show(Providers $provider){
+        return new ProviderResource($provider);
     }
 
-    public function update(Request $request, Parents $parent){
+    public function update(Request $request, Providers $provider){
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
+            'name' => 'string|max:255',
+            'org_id' => 'integer|max:255',
             'password' => 'required|string|max:255',
         ]);
 
@@ -64,20 +65,21 @@ class ParentController extends Controller
             ['message' => 'invalid data format'], 422);
         };
 
-        $parent->update([
+        $provider->update([
             'name' => $request->name,
+            'org_id' => $request->org_id,
             'password' => Hash::make($request->password),
         ]);
 
         return response()->json(
             ['message' => 'data updated successfully',
-            'Data' => new ParentResource($parent)], 200
+            'Data' => new ProviderResource($provider)], 200
         );
 
     }
 
-    public function destroy(Parents $parent){
-        $parent->delete();
-        return response()->json(['message' => 'delete parent'], 200);
+    public function destroy(Providers $provider){
+        $provider->delete();
+        return response()->json(['message' => 'delete provider'], 200);
     }
 }

@@ -21,5 +21,6 @@ class Children extends Model
         'height',
         'medical_history',
         'allergy',
+        'org_id',
     ];
 }

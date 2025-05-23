@@ -20,11 +20,13 @@ return new class extends Migration
             $table->float('height',5 ,2);
             $table->string('medical_history')->nullable();
             $table->string('allergy')->nullable();
+            $table->unsignedBigInteger('org_id');
             $table->timestamps();
 
             $table->unique(['parent_id', 'name']);
 
             $table->foreign('parent_id')->references('id')->on('parent')->onDelete('cascade');
+            $table->foreign('org_id')->references('id')->on('organization')->onDelete('cascade');
         });
     }
 

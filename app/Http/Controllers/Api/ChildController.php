@@ -30,6 +30,7 @@ class ChildController extends Controller
             'height' => 'required|numeric',
             'medical_history' => 'required|string|max:500',
             'allergy' => 'required|string|max:500',
+            'org_id' => 'required|integer|max:500',
         ]);
 
         if($validator->fails()){
@@ -45,6 +46,7 @@ class ChildController extends Controller
             'height' => $request->height,
             'medical_history' => $request->medical_history,
             'allergy' => $request->allergy,
+            'org_id' => $request->org_id,
         ]);
 
         return response()->json(
@@ -65,6 +67,7 @@ class ChildController extends Controller
             'height' => 'numeric',
             'medical_history' => 'string|max:500',
             'allergy' => 'string|max:500',
+            'org_id' => 'required|integer|max:500',
         ]);
 
         if($validator->fails()){
@@ -78,7 +81,8 @@ class ChildController extends Controller
             'weight',
             'height',
             'medical_history',
-            'allergy'
+            'allergy',
+            'org_id'
         ]));    
 
         return response()->json(
@@ -106,5 +110,6 @@ class ChildController extends Controller
             'data' => ChildResource::collection($children)
         ], 200);
     }
+    
 
 }
