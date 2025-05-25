@@ -36,6 +36,8 @@ Route::apiResource('vaccine', VaccineController::class);
 
 Route::apiResource('vaccination', VaccinationController::class);
 
+Route::get('/child/{child_id}/vaccinations/status', [ChildController::class, 'getVaccinePeriod']);
+
 Route::get('/child/{child_id}/vaccinations', [VaccinationController::class, 'getChildVaccinations']);
 
 Route::put('/child/{child_id}/vaccinations/scan', [VaccinationController::class, 'updateAfterScan']);
@@ -43,3 +45,8 @@ Route::put('/child/{child_id}/vaccinations/scan', [VaccinationController::class,
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/ping', function () {
+    return response()->json(['status' => 'OK']);
+});
+

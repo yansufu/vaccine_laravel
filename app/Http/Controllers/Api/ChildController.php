@@ -58,19 +58,19 @@ class ChildController extends Controller
             Vaccinations::create([
                 'child_id' => $child->childID,
                 'vaccine_id' => $vaccine->id,
-                //added after scan
+                //will be added after scan
                 'status' => null,
                 'lot_id' => null,
                 'prov_id' => null,
             ]);
         }
 
-        return response()->json($child->load('vaccinations'), 201);
-
         return response()->json(
             ['message' => 'data created successfully',
             'Data' => new ChildResource($child)], 200
         );
+
+        return response()->json($child->load('vaccinations'), 201);        
     }
 
     public function show(Children $child){
@@ -127,6 +127,38 @@ class ChildController extends Controller
             'message' => 'Children fetched successfully',
             'data' => ChildResource::collection($children)
         ], 200);
+    }
+
+    public function getVaccinePeriod($child_id){
+        $child = Children::findOrFail($child_id);
+        $dob = new \Carbon\Carbon($child->date_of_birth);
+        $now = now();
+        $ageInMonths  = $dob->diffInMonths($now);
+        $ageInDays  = $dob->diffInDays($now) % 30 ; //because we dont wanna get the child from birth, we just wanna know the remaining days from 30 days
+
+        $ageString = "$ageInMonths months, $ageInDays days";
+
+        $vaccineThisMonth = Vaccines::where('period', $ageInMonths)->get();
+
+        $vaccinationStatus = [];
+        foreach ($vaccineThisMonth as $vaccine){
+            $vaccination = $child
+            ->vaccinations() //table name vaccinations
+            ->where ("vaccine_id", $vaccine->id)
+            ->first();
+
+            if($vaccination){
+                $status = $vaccination->status ? "Completed" : "Missing";
+            }
+
+            $vaccinationStatus[] = [
+                'name' => $vaccine->name,
+                'status' => $status,
+            ];
+            
+        }
+        return response()->json($vaccinationStatus, 200);
+
     }
     
 
