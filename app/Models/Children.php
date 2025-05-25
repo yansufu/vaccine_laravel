@@ -26,6 +26,12 @@ class Children extends Model
         'org_id',
     ];
 
+    public function organization()
+    {
+        return $this->belongsTo(Organizations::class, 'org_id');
+    }
+
+
     public function vaccinations()
     {
         return $this->hasMany(Vaccinations::class, 'child_id');

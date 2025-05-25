@@ -36,6 +36,8 @@ Route::apiResource('vaccine', VaccineController::class);
 
 Route::apiResource('vaccination', VaccinationController::class);
 
+Route::get('/child/{child_id}', [ChildController::class, 'show']);
+
 Route::get('/child/{child_id}/vaccinations/status', [ChildController::class, 'getVaccinePeriod']);
 
 Route::get('/child/{child_id}/vaccinations', [VaccinationController::class, 'getChildVaccinations']);

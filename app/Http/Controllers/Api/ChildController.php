@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Children;
 use App\Models\Vaccinations;
 use App\Models\Vaccines;
+use App\Models\Organizations;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ChildResource;
@@ -73,8 +74,15 @@ class ChildController extends Controller
         return response()->json($child->load('vaccinations'), 201);        
     }
 
-    public function show(Children $child){
-        return new ChildResource($child);
+    public function show($child_id)
+    {
+        $child = Children::with('organization')->find($child_id);
+
+        if (!$child) {
+            return response()->json(['error' => 'Child not found'], 404);
+        }
+
+        return response()->json($child);
     }
 
     public function update(Request $request, Children $child){
