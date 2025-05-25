@@ -155,8 +155,9 @@ class ChildController extends Controller
             ->where ("vaccine_id", $vaccine->id)
             ->first();
 
+            $status = false;
             if($vaccination){
-                $status = $vaccination->status ? "Completed" : "Missing";
+                $status = $vaccination->is_completed;
             }
 
             $vaccinationStatus[] = [
