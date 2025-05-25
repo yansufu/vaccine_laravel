@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProviderController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\VaccineController;
 use App\Http\Controllers\Api\VaccinationController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
