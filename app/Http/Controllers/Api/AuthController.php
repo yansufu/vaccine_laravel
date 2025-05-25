@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
-
+use App\Models\Parents;
+use App\Models\Children;
 
 use Illuminate\Http\Request;
 
