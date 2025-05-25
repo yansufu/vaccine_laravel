@@ -24,7 +24,7 @@ Route::apiResource('parent', ParentController::class);
 
 Route::apiResource('child', ChildController::class);
 
-Route::get('/child/{parent_id}', [ChildController::class, 'getByParent']);
+Route::get('/childByParent/{parent_id}', [ChildController::class, 'getByParent']);
 
 Route::post('/parent/{parent}/children', [ChildController::class, 'store']);
 
