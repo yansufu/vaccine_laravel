@@ -30,7 +30,7 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Login successful',
                 'parent_id' => $parent->id,
-                'child_id' => $firstChild ? $firstChild->id : null
+                'child_id' => $firstChild ? $firstChild->childID : null
             ], 200);
         }
 
