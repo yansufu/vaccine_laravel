@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vaccines extends Model
+class Categories extends Model
 {
     use HasFactory;
 
-    protected $table = 'vaccine';
+    protected $table = 'category';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
         'category',
-        'period',
     ];
-    
 }

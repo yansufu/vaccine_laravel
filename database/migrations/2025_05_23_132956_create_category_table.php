@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vaccine', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('cat_id');
-            $table->integer('period');
-
-
-            $table->unique(['name', 'period']);
-            $table->foreign('cat_id')->references('id')->on('category')->onDelete('cascade');
+            $table->string('category');
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vaccine');
+        Schema::dropIfExists('category');
     }
 };

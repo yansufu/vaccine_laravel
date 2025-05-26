@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class VaccineResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,7 @@ class VaccineResource extends JsonResource
         //return parent::toArray($request);
         return[
             'id' => $this->id,
-            'Vaccine_name' => $this->name,
             'category' => $this->category,
-            'period' => $this->period,
         ];
     }
 }

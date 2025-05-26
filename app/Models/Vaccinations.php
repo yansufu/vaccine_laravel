@@ -9,7 +9,7 @@ class Vaccinations extends Model
 {
     use HasFactory;
 
-    protected $table = 'vaccinations';
+    protected $table = 'vaccination';
 
     protected $fillable = [
     'child_id',

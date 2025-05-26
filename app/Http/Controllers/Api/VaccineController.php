@@ -26,6 +26,7 @@ class VaccineController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'period' => 'required|integer|max:10'
         ]);
 
@@ -36,6 +37,7 @@ class VaccineController extends Controller
 
         $vaccine = Vaccines::create([
             'name' => $request->name,
+            'category' => $request->category,
             'period' => $request->period
         ]);
 
@@ -52,5 +54,19 @@ class VaccineController extends Controller
     public function destroy(Vaccines $vaccine){
         $vaccine->delete();
         return response()->json(['message' => 'delete vaccine'], 200);
+    }
+
+    public function getVaccineByCat($cat_id)
+    {
+        $vaccine = Vaccines::where('cat_id', $cat_id)->get();
+
+        if ($vaccine->isEmpty()) {
+            return response()->json(['message' => 'No vaccine found'], 200);
+        }
+
+        return response()->json([
+            'message' => 'vaccine fetched successfully',
+            'data' => VaccineResource::collection($vaccine)
+        ], 200);
     }
 }
