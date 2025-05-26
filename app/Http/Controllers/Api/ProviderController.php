@@ -49,9 +49,11 @@ class ProviderController extends Controller
         );
     }
 
-    public function show(Providers $provider){
+    public function show(Providers $provider) {
+        $provider->load('organization');
         return new ProviderResource($provider);
     }
+
 
     public function update(Request $request, Providers $provider){
         $validator = Validator::make($request->all(),[

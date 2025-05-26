@@ -17,4 +17,10 @@ class Providers extends Model
         'email',
         'password',
     ];
+
+    public function organization()
+        {
+            return $this->belongsTo(Organizations::class, 'org_id');
+        }
+
 }
