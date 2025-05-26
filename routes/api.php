@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\VaccineController;
 use App\Http\Controllers\Api\VaccinationController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthProvController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/loginProvider', [AuthProvController::class, 'loginProv']);
 
 Route::apiResource('parent', ParentController::class);
 
