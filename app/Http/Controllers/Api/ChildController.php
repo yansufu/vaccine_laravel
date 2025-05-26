@@ -111,10 +111,7 @@ class ChildController extends Controller
             'org_id'
         ]));    
 
-        return response()->json(
-            ['message' => 'data updated successfully',
-            'Data' => new ChildResource($child)], 200
-        );
+        return response()->json(new ChildResource($child), 200);
 
     }
 
