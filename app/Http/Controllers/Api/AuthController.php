@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Parents;
 use App\Models\Children;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
