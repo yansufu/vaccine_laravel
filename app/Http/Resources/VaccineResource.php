@@ -18,7 +18,7 @@ class VaccineResource extends JsonResource
         return[
             'id' => $this->id,
             'Vaccine_name' => $this->name,
-            'category' => $this->category,
+            'cat_id' => $this->cat_id,
             'period' => $this->period,
         ];
     }

@@ -15,7 +15,7 @@ class Vaccines extends Model
 
     protected $fillable = [
         'name',
-        'category',
+        'cat_id',
         'period',
     ];
     
