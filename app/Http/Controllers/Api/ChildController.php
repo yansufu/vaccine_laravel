@@ -71,7 +71,7 @@ class ChildController extends Controller
             'Data' => new ChildResource($child)], 200
         );
 
-        return response()->json($child->load('vaccinations'), 201);        
+        return response()->json($child->load('vaccination'), 201);        
     }
 
     public function show($child_id)
@@ -148,7 +148,7 @@ class ChildController extends Controller
         $vaccinationStatus = [];
         foreach ($vaccineThisMonth as $vaccine){
             $vaccination = $child
-            ->vaccinations() //table name vaccinations
+            ->vaccination() //table name vaccination
             ->where ("vaccine_id", $vaccine->id)
             ->first();
 
