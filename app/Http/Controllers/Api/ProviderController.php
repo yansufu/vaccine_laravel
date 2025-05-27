@@ -49,9 +49,15 @@ class ProviderController extends Controller
         );
     }
 
-    public function show(Providers $provider) {
-        $provider->load('organization');
-        return new ProviderResource($provider);
+    public function show($prov_id)
+    {
+        $prov = Providers::with('organization')->find($prov_id);
+
+        if (!$prov) {
+            return response()->json(['error' => 'Organization not found'], 404);
+        }
+
+        return response()->json($prov);
     }
 
 
