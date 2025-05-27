@@ -93,7 +93,7 @@ class ChildController extends Controller
             'height' => 'numeric',
             'medical_history' => 'string|max:500',
             'allergy' => 'string|max:500',
-            'org_id' => 'required|integer|max:500',
+            'org_id' => 'integer|max:500',
         ]);
 
         if($validator->fails()){

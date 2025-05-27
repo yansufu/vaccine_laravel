@@ -65,7 +65,6 @@ class ProviderController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => 'string|max:255',
             'org_id' => 'integer|max:255',
-            'password' => 'required|string|max:255',
         ]);
 
         if($validator->fails()){
@@ -76,7 +75,6 @@ class ProviderController extends Controller
         $provider->update([
             'name' => $request->name,
             'org_id' => $request->org_id,
-            'password' => Hash::make($request->password),
         ]);
 
         return response()->json(
