@@ -32,7 +32,7 @@ class Children extends Model
     }
 
 
-    public function vaccinations()
+    public function vaccination()
     {
         return $this->hasMany(Vaccinations::class, 'child_id');
     }
