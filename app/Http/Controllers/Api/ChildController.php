@@ -166,6 +166,36 @@ class ChildController extends Controller
         return response()->json($vaccinationStatus, 200);
 
     }
+
+    public function getVaccineNextPeriod($child_id){
+        $child = Children::findOrFail($child_id);
+        $dob = new \Carbon\Carbon($child->date_of_birth);
+        $now = now();
+        $ageInMonths  = ($dob->diffInMonths($now)) + 1;
+
+        $vaccineThisMonth = Vaccines::where('period', $ageInMonths)->get();
+
+        $vaccinationStatus = [];
+        foreach ($vaccineThisMonth as $vaccine){
+            $vaccination = $child
+            ->vaccination() //table name vaccination
+            ->where ("vaccine_id", $vaccine->id)
+            ->first();
+
+            $status = false;
+            if($vaccination){
+                $status = $vaccination->is_completed;
+            }
+
+            $vaccinationStatus[] = [
+                'name' => $vaccine->name,
+                'status' => $status,
+            ];
+            
+        }
+        return response()->json($vaccinationStatus, 200);
+
+    }
     
 
 }

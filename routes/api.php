@@ -48,6 +48,8 @@ Route::get('/child/{child_id}', [ChildController::class, 'show']);
 
 Route::get('/child/{child_id}/vaccinations/status', [ChildController::class, 'getVaccinePeriod']);
 
+Route::get('/child/{child_id}/vaccinations/nextStatus', [ChildController::class, 'getVaccineNextPeriod']);
+
 Route::get('/child/{child_id}/vaccinations', [VaccinationController::class, 'getChildVaccinations']);
 
 Route::put('/child/{child_id}/vaccinations/scan', [VaccinationController::class, 'updateAfterScan']);
